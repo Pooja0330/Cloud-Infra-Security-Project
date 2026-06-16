@@ -1,1 +1,15 @@
-# Example S3 bucket encryption policy  
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Sid": "AllowS3EncryptedUploads",
+    "Effect": "Deny",
+    "Principal": "*",
+    "Action": "s3:PutObject",
+    "Resource": "arn:aws:s3:::example_bucket/*",
+    "Condition": {
+      "StringNotEquals": {
+        "s3:x-amz-server-side-encryption": "aws:kms"
+      }
+    }
+  }
+}
